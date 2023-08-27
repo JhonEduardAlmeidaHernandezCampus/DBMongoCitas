@@ -1,0 +1,177 @@
+use("db_campus_citas");
+db.usuarios.insertMany(
+    [
+        {
+            usu_id: 1,
+            usu_tipo_doc: "CC",
+            usu_nombre_completo: "Jhon Eduard Almeida Hernandez",
+            usu_genero: "Hombre",
+            usu_telefono: "+57 3005559677",
+            usu_direccion: "Calle 11B # 1A - 20 Piedecuesta",
+            usu_email: "jhonhernandez.1899@gmail.com",
+            usu_acudiente: {
+                acu_id: 29332022,
+                acu_nombre_completo: "Carmen Hernandez",
+                acu_telefono: "+52 3302938221",
+                acu_direccion: "Calle 59 # 12 - 35 Bucaramanga - Santander"
+            }
+        },
+        {
+            usu_id: 2,
+            usu_tipo_doc: "CC",
+            usu_nombre_completo: "Ana Maria Sanchez",
+            usu_genero: "Mujer",
+            usu_telefono: "+57 3012345678",
+            usu_direccion: "Carrera 7 # 14 - 42 Bogota",
+            usu_email: "anamaria@gmail.com",
+            usu_acudiente: {
+                acu_id: 45231234,
+                acu_nombre_completo: "Luis Sanchez",
+                acu_telefono: "+52 3312345678",
+                acu_direccion: "Av. Principal # 45 Medellin"
+            }
+        },
+        {
+            usu_id: 3,
+            usu_tipo_doc: "TI",
+            usu_nombre_completo: "Maria Rodriguez",
+            usu_genero: "Mujer",
+            usu_telefono: "+57 3023456789",
+            usu_direccion: "Calle 5 # 20 - 15 Cali",
+            usu_email: "maria@hotmail.com",
+            usu_acudiente: {
+                acu_id: 54321123,
+                acu_nombre_completo: "Carlos Rodriguez",
+                acu_telefono: "+52 3345678901",
+                acu_direccion: "Carrera 10 # 30 - 25 Barranquilla"
+            }
+        },
+        {
+            usu_id: 4,
+            usu_tipo_doc: "CC",
+            usu_nombre_completo: "Luis Perez",
+            usu_genero: "Hombre",
+            usu_telefono: "+57 3034567890",
+            usu_direccion: "Calle 3 # 10 - 8 Medellin",
+            usu_email: "luisperez@gmail.com",
+            usu_acudiente: {
+                acu_id: 65783456,
+                acu_nombre_completo: "Laura Perez",
+                acu_telefono: "+52 3356789012",
+                acu_direccion: "Carrera 15 # 5 - 10 Bogota"
+            }
+        },
+        {
+            usu_id: 5,
+            usu_tipo_doc: "PP",
+            usu_nombre_completo: "Laura Garcia",
+            usu_genero: "Mujer",
+            usu_telefono: "+57 3045678901",
+            usu_direccion: "Av. Principal # 25 - 10 Cali",
+            usu_email: "lauragarcia@hotmail.com",
+            usu_acudiente: {
+                acu_id: 87654567,
+                acu_nombre_completo: "Carlos Garcia",
+                acu_telefono: "+52 3367890123",
+                acu_direccion: "Calle 7 # 40 - 15 Barranquilla"
+            }
+        }
+    ]
+)
+
+use("db_campus_citas");
+db.citas.insertMany(
+    [
+        {
+            ID_cita: 1,
+            cit_fecha: "2023-08-12",
+            cit_estado_cita: "Cancelada",
+            cit_datos_medico: 1,
+            cit_datos_usuario: 1
+        },
+        {
+            ID_cita: 2,
+            cit_fecha: "2023-05-16",
+            cit_estado_cita: "En espera",
+            cit_datos_medico: 2,
+            cit_datos_usuario: 2
+        },
+        {
+            ID_cita: 3,
+            cit_fecha: "2023-09-01",
+            cit_estado_cita: "Activa",
+            cit_datos_medico: 3,
+            cit_datos_usuario: 3
+        },
+        {
+            ID_cita: 4,
+            cit_fecha: "2023-07-13",
+            cit_estado_cita: "Rechazada",
+            cit_datos_medico: 4,
+            cit_datos_usuario: 4
+        },
+        {
+            ID_cita: 5,
+            cit_fecha: "2023-08-21",
+            cit_estado_cita: "Rechazada",
+            cit_datos_medico: 5,
+            cit_datos_usuario: 5
+        }
+    ]
+)
+
+use("db_campus_citas");
+db.medicos.insertMany(
+    [
+        {
+            med_num_matricula: 1,
+            med_nombre_completo: "Carlos Villafrades",
+            med_especialidad: {
+                nom_especialidad: "Ginecologo"
+            },
+            med_consultorio: {
+                nom_consultorio: "Consultorio de ginecologia"
+            }
+        },
+        {
+            med_num_matricula: 2,
+            med_nombre_completo: "Ana López",
+            med_especialidad: {
+                nom_especialidad: "Pediatra"
+            },
+            med_consultorio: {
+                nom_consultorio: "Consultorio de pediatría"
+            }
+        },
+        {
+            med_num_matricula: 3,
+            med_nombre_completo: "Luis Martínez",
+            med_especialidad: {
+                nom_especialidad: "Dermatólogo"
+            },
+            med_consultorio: {
+                nom_consultorio: "Consultorio de dermatología"
+            }
+        },
+        {
+            med_num_matricula: 4,
+            med_nombre_completo: "Maria González",
+            med_especialidad: {
+                nom_especialidad: "Cardiólogo"
+            },
+            med_consultorio: {
+                nom_consultorio: "Consultorio de cardiología"
+            }
+        },
+        {
+            med_num_matricula: 5,
+            med_nombre_completo: "Pedro Ramírez",
+            med_especialidad: {
+                nom_especialidad: "Neurólogo"
+            },
+            med_consultorio: {
+                nom_consultorio: "Consultorio de neurología"
+            }
+        }
+    ]
+)

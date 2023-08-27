@@ -1,0 +1,167 @@
+use("db_campus_citas");
+db.createCollection("counter")
+db.counter.insertOne(
+    { ID_cita: "citasID_cita", sequenceValue: 0 }
+);
+
+use("db_campus_citas");
+db.createCollection("usuarios", {
+    validator: {
+        $jsonSchema: {
+            bsonType: "object",
+            additionalProperties : false,
+            required: ["usu_id", "usu_tipo_doc", "usu_nombre_completo", "usu_genero", "usu_telefono", "usu_direccion", "usu_email", "usu_acudiente"],
+            properties: {
+                _id: {
+                    bsonType: "objectId"
+                },
+                usu_id: {
+                    bsonType : "int",
+                    description: "usu_id es obligatorio"
+                },
+                usu_tipo_doc: {
+                    enum: ["CC", "TI", "PP"],
+                    description: "usu_tipo_doc es obligatorio"
+                },
+                usu_nombre_completo: {
+                    bsonType: "string",
+                    maxLength: 60,
+                    description: "usu_nombre_completo es obligatorio"
+                },
+                usu_genero: {
+                    enum: ["Hombre", "Mujer", "No definido"],
+                    description: "usu_genero es obligatorio"
+                },
+                usu_telefono: {
+                    bsonType: "string",
+                    maxLength: 14,
+                    pattern: "[0-9\s\w]+$",
+                    description: "usu_telefono es obligatorio"
+                },
+                usu_direccion: {
+                    bsonType: "string",
+                    maxLength: 60,
+                    pattern: "[a-z-A-Z0-9\s\w]+$",
+                    description: "usu_direccion es obligatorio"
+                },
+                usu_email: {
+                    bsonType: "string",
+                    maxLength: 60,
+                    pattern: "[a-z-A-Z0-9+@\.]+$",
+                    description: "usu_email es obligatorio"
+                },
+                usu_acudiente: {
+                    bsonType: "object",
+                    required: ["acu_id", "acu_nombre_completo", "acu_telefono", "acu_direccion"],
+                    properties: {
+                        acu_id: {
+                            bsonType: "int",
+                            description: "acu_id es obligatorio"
+                        },
+                        acu_nombre_completo: {
+                            bsonType: "string",
+                            maxLength: 60,
+                            pattern: "[a-z-A-Z\s]+$",
+                            description: "acu_nombre_completo es obligatorio"
+                        },
+                        acu_telefono: {
+                            bsonType: "string",
+                            maxLength: 14,
+                            pattern: "[a-z-A-Z0-9\s\w]+$",
+                            description: "acu_telefono es obligatorio"
+                        },
+                        acu_direccion: {
+                            bsonType: "string",
+                            maxLength: 60,
+                            pattern: "[a-z-A-Z0-9\s\w]+$",
+                            description: "acu_direccion es obligatorio"
+                        }
+                    }
+                }
+            }
+        }
+    }
+})
+
+use("db_campus_citas");
+db.createCollection("citas", {
+    validator: {
+        $jsonSchema: {
+            bsonType: "object",
+            additionalProperties : false,
+            required: ["ID_cita", "cit_fecha", "cit_estado_cita", "cit_datos_medico", "cit_datos_usuario"],
+            properties: {
+                _id: {
+                    bsonType: "objectId"
+                },
+                ID_cita: {
+                    bsonType: "int"
+                },
+                cit_fecha: {
+                    bsonType: "string"
+                },
+                cit_estado_cita: {
+                    bsonType: "string",
+                    enum: ["Activa", "Cancelada", "Rechazada", "En espera", "Re programada"],
+                    description: "cit_estado_cita es obligatorio"
+                },
+                cit_datos_medico: {
+                    bsonType: "int",
+                    description: "cita_datos_medico es obligatorio"
+                },
+                cit_datos_usuario: {
+                    bsonType: "int",
+                    description: "cit_datos_usuario es obligatorio"
+                }
+            }
+        }
+    }
+})
+
+use("db_campus_citas");
+db.createCollection("medicos", {
+    validator: {
+        $jsonSchema: {
+            bsonType: "object",
+            additionalProperties: false,
+            required: ["med_num_matricula", "med_nombre_completo", "med_consultorio", "med_especialidad"],
+            properties: {
+                _id: {
+                    bsonType: "objectId"
+                },
+                med_num_matricula: {
+                    bsonType: "int",
+                    description: "med_num_matricula es obligatorio"
+                },
+                med_nombre_completo: {
+                    bsonType: "string",
+                    maxLength: 60,
+                    pattern: "[a-z-A-Z\s]+$",
+                    description: "med_nombre_completo es obligatorio"
+                },
+                med_especialidad: {
+                    bsonType: "object",
+                    additionalProperties: false,
+                    required: ["nom_especialidad"],
+                    properties: {
+                        nom_especialidad: {
+                            bsonType: "string",
+                            description: "nom_especialidad es obligatorio"
+                        }
+                    }
+                },
+                med_consultorio: {
+                    bsonType: "object",
+                    additionalProperties: false,
+                    required: ["nom_consultorio"],
+                    properties: {
+                        nom_consultorio: {
+                            bsonType: "string",
+                            description: "nom_consultorio es obligatorio"
+                        }
+                    }
+                }
+            }
+        }
+    }
+})
